@@ -37,6 +37,7 @@ permitirá seguir siendo competitivos.
 A partir de lo anterior, VendeTodo SPA desea guardar en una base de datos la información
 tanto de empleados como de clientes y despachadores, los datos a guardar son los
 siguientes:
+
 ● Empleados: nombre, apellido, fecha de nacimiento, dirección, región, ciudad, país,
 teléfono, cargo.
 
