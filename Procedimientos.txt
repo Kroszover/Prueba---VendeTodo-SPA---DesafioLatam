@@ -10,6 +10,12 @@ de datos de las variables, asignación de claves, entre otros. ( 2 Puntos ).----
 
 *.- Revisar archivo requerimiento1.png y el archivo de starUML requerimiento1.mdj
 
+
+-----2. Llevar el modelo anteriormente realizado a base de datos, crear las tablas y la
+estructura necesaria, la cual permitirá dar solución al problema planteado, debe crear
+un usuario propio para poder desarrollar los script así como también las secuencias
+que corresponda. ( 2 Puntos )-----
+*.-
 SQL*Plus: Release 19.0.0.0.0 - Production on MiÚ Feb 9 23:15:22 2022
 Version 19.3.0.0.0
 
@@ -149,6 +155,7 @@ ALTER TABLE ordenes ADD CONSTRAINT FK_ordenes__id_compra FOREIGN KEY (id_compra)
 ALTER TABLE ordenes ADD CONSTRAINT FK_ordenes__id_empleado FOREIGN KEY (id_empleado) REFERENCES empleados(id_empleado);
 ALTER TABLE ordenes ADD CONSTRAINT FK_ordenes__id_despachador FOREIGN KEY (id_despachador) REFERENCES despachadores(id_despachador);
 
+
 -----------------Arroja por consola lo siguiente--------------------
 
 Table EMPLEADOS creado.
@@ -168,4 +175,237 @@ Table ORDENES alterado.
 Table ORDENES alterado.
 Table ORDENES alterado.
 
+-----3. Realizar 5 inserciones a cada tabla, esto con el fin de ejecutar consultas sobre el
+modelo. ( 2 Puntos )-----
+*.-
+savepoint empleados;
+--EMPLEADOS
+--1
+INSERT INTO EMPLEADOS (id_empleado, nombre, apellido, fecha_nacimiento, direccion, region, ciudad, pais, telefono, cargo)
+VALUES(1, 'Ignacio', 'Cifuentes', TO_DATE('1995-12-11', 'YYYY-MM-DD'), 'los aromos 1335 la florida','metropolitana','santiago', 'chile', 981693964, 'vendedor');
+COMMIT;
+--2
+INSERT INTO EMPLEADOS (id_empleado, nombre, apellido, fecha_nacimiento, direccion, region, ciudad, pais, telefono, cargo)
+VALUES(2, 'Carlos', 'Trejo', TO_DATE('1990-01-07', 'YYYY-MM-DD'), 'los presidentes 1064 las rejas','metropolitana','santiago', 'chile', 987954236, 'supervisor');
+COMMIT;
+--3
+INSERT INTO EMPLEADOS (id_empleado, nombre, apellido, fecha_nacimiento, direccion, region, ciudad, pais, telefono, cargo)
+VALUES(3, 'Andrea', 'Perez', TO_DATE('1995-09-07', 'YYYY-MM-DD'), 'manuel rodriguez 1231 Renca','metropolitana','santiago', 'chile', 977944222, 'gerente de operaciones');
+COMMIT;
+--4
+INSERT INTO EMPLEADOS (id_empleado, nombre, apellido, fecha_nacimiento, direccion, region, ciudad, pais, telefono, cargo)
+VALUES(4, 'Mario', 'Ledesma', TO_DATE('1963-06-01', 'YYYY-MM-DD'), 'avenida argentina 1436 maipu','metropolitana','santiago', 'chile', 916798536, 'jefe de operaciones');
+COMMIT;
+--5
+INSERT INTO EMPLEADOS (id_empleado, nombre, apellido, fecha_nacimiento, direccion, region, ciudad, pais, telefono, cargo)
+VALUES(5, 'Luigi', 'Bros', TO_DATE('1973-06-01', 'YYYY-MM-DD'), 'plaza italia 0021 providencia','metropolitana','santiago', 'chile', 916456789, 'tecnico de mantenimiento');
+COMMIT;
+
+savepoint clientes;
+--Clientes
+--1
+INSERT INTO CLIENTES (id_cliente, nombre_empresa, nombre_contacto, email, direccion, region, ciudad, pais, codigo_postal, telefono)
+VALUES(1, 'Dwayne', 'Jhonson', 'therock@wwe.com', 'hollywood boulevard 14589', 'no aplica', 'California', 'Estados Unidos', 8964561, 7987897445613);
+COMMIT;
+--2
+INSERT INTO CLIENTES (id_cliente, nombre_empresa, nombre_contacto, email, direccion, region, ciudad, pais, codigo_postal, telefono)
+VALUES(2, 'Aaron', 'Smith', 'asmith@irb.com', 'evergreen avenue 063', 'no aplica', 'Sidney', 'Australia', 7777894, 14523675445);
+COMMIT;
+--3
+INSERT INTO CLIENTES (id_cliente, nombre_empresa, nombre_contacto, email, direccion, region, ciudad, pais, codigo_postal, telefono)
+VALUES(3, 'Geralt', 'Rivia', 'whitewolf@kahermorhen.com', 'novigrado bajo 1014', 'region de la araucania', 'pucon', 'chile', 99978746, 997845623);
+COMMIT;
+--4
+INSERT INTO CLIENTES (id_cliente, nombre_empresa, nombre_contacto, email, direccion, region, ciudad, pais, codigo_postal, telefono)
+VALUES(4, 'miguel', 'cervantes', 'elquijote@santillana.com', 'el molino 5013', 'region de la araucania', 'villarrica', 'chile', 9997863, 632165498);
+COMMIT;
+--5
+INSERT INTO CLIENTES (id_cliente, nombre_empresa, nombre_contacto, email, direccion, region, ciudad, pais, codigo_postal, telefono)
+VALUES(5, 'Jordan', 'Peterson', 'JBP@Petersoncompany.com', 'calle proposito 4567', 'region de la araucania', 'temuco', 'chile', 999441, 789456123);
+COMMIT;
+
+savepoint despachadores;
+--Despachadores
+--1
+INSERT INTO DESPACHADORES (id_despachador, nombre, telefono_empresa)
+VALUES(1, 'pedro paramo', '99997541' );
+COMMIT;
+--2
+INSERT INTO DESPACHADORES (id_despachador, nombre, telefono_empresa)
+VALUES(2, 'luis andaur', '987456111' );
+COMMIT;
+--3
+INSERT INTO DESPACHADORES (id_despachador, nombre, telefono_empresa)
+VALUES(3, 'sergio busquets', '88846213' );
+COMMIT;
+--4
+INSERT INTO DESPACHADORES (id_despachador, nombre, telefono_empresa)
+VALUES(4, 'claudio bravo', '654778912' );
+COMMIT;
+--5
+INSERT INTO DESPACHADORES (id_despachador, nombre, telefono_empresa)
+VALUES(5, 'Marko Zaror', '7898745612' );
+COMMIT;
+
+savepoint categoria;
+--categoria
+--1
+INSERT INTO CATEGORIAS (id_categoria, nombre)
+VALUES(1, 'vestuario');
+COMMIT;
+--2
+INSERT INTO CATEGORIAS (id_categoria, nombre)
+VALUES(2, 'calzado');
+COMMIT;
+--3
+INSERT INTO CATEGORIAS (id_categoria, nombre)
+VALUES(3, 'alimentos');
+COMMIT;
+--4
+INSERT INTO CATEGORIAS (id_categoria, nombre)
+VALUES(4, 'tecnologia');
+COMMIT;
+--5
+INSERT INTO CATEGORIAS (id_categoria, nombre)
+VALUES(5, 'joyas');
+COMMIT;
+
+savepoint proveedores;
+--proveedores
+--1
+INSERT INTO PROVEEDORES (id_proveedor, nombre_compania, nombre_contacto, direccion, region, ciudad, telefono)
+VALUES(1, 'zara', 'sarita gonzales', 'calle falsa 123', 'metropolitana', 'santiago', 789945551);
+COMMIT;
+--2
+INSERT INTO PROVEEDORES (id_proveedor, nombre_compania, nombre_contacto, direccion, region, ciudad, telefono)
+VALUES(2, 'jordan', 'michael jordan', 'patronato 9674', 'metropolitana', 'santiago', 789945562);
+COMMIT;
+--3
+INSERT INTO PROVEEDORES (id_proveedor, nombre_compania, nombre_contacto, direccion, region, ciudad, telefono)
+VALUES(3, 'La crianza', 'Mauricio Kloker', 'laguna sur 1256', 'metropolitana', 'santiago', 654748231);
+COMMIT;
+--4
+INSERT INTO PROVEEDORES (id_proveedor, nombre_compania, nombre_contacto, direccion, region, ciudad, telefono)
+VALUES(4, 'huawei', 'Donnie Yen', 'diego de almagro 0682', 'metropolitana', 'santiago', 78948789);
+COMMIT;
+--5
+INSERT INTO PROVEEDORES (id_proveedor, nombre_compania, nombre_contacto, direccion, region, ciudad, telefono)
+VALUES(5, 'joyas baron', 'andronico mujica', 'villa el esfuerzo 2360', 'metropolitana', 'santiago', 789946589);
+COMMIT;
+
+savepoint productos;
+--productos
+--1
+INSERT INTO PRODUCTOS (id_producto, precio, stock, descontinuado, id_categoria, id_proveedor)
+VALUES (1, 10000, 5, 'no', 1, 1);
+COMMIT;
+--2
+INSERT INTO PRODUCTOS (id_producto, precio, stock, descontinuado, id_categoria, id_proveedor)
+VALUES (2, 36000, 45, 'no', 2, 2);
+COMMIT;
+--3
+INSERT INTO PRODUCTOS (id_producto, precio, stock, descontinuado, id_categoria, id_proveedor)
+VALUES (3, 2000, 100, 'si', 3, 3);
+COMMIT;
+--4
+INSERT INTO PRODUCTOS (id_producto, precio, stock, descontinuado, id_categoria, id_proveedor)
+VALUES (4, 450000, 200, 'no', 4, 4);
+COMMIT;
+--5
+INSERT INTO PRODUCTOS (id_producto, precio, stock, descontinuado, id_categoria, id_proveedor)
+VALUES (5, 600000, 10, 'no', 5, 5);
+COMMIT;
+
+savepoint compras;
+--compras
+--1
+INSERT INTO compras (id_compra, valor_compra  cantidad_productos, descuentos)
+VALUES(1, 1200000, 2,0);
+COMMIT;
+--2
+INSERT INTO compras (id_compra, valor_compra  cantidad_productos, descuentos)
+VALUES(2, 450000, 1,0);
+COMMIT;
+--3
+INSERT INTO compras (id_compra, valor_compra  cantidad_productos, descuentos)
+VALUES(3, 2000, 1,0);
+COMMIT;
+--4
+INSERT INTO compras (id_compra, valor_compra  cantidad_productos, descuentos)
+VALUES(4, 432000, 12,0);
+COMMIT;
+--5
+INSERT INTO compras (id_compra, valor_compra  cantidad_productos, descuentos)
+VALUES(5, 10000, 5,0);
+COMMIT;
+
+savepoint ordenes_de_compra;
+--ordenes de compra
+--1
+INSERT INTO orden_de_compra (cantidad, id_producto, id_orden)
+VALUES(2, 5, 1);
+UPDATE PRODUCTOS
+SET stock = stock-2
+WHERE id_producto = 5;
+--2
+INSERT INTO orden_de_compra (cantidad, id_producto, id_orden)
+VALUES(1, 4, 2);
+UPDATE PRODUCTOS
+SET stock = stock-1
+WHERE id_producto = 4;
+--3
+INSERT INTO orden_de_compra (cantidad, id_producto, id_orden)
+VALUES(1, 3, 3);
+UPDATE PRODUCTOS
+SET stock = stock-1
+WHERE id_producto = 3;
+--4
+INSERT INTO orden_de_compra (cantidad, id_producto, id_orden)
+VALUES(12, 2, 4);
+UPDATE PRODUCTOS
+SET stock = stock-12
+WHERE id_producto = 2;
+--5
+INSERT INTO orden_de_compra (cantidad, id_producto, id_orden)
+VALUES(5, 3, 5);
+UPDATE PRODUCTOS
+SET stock = stock-5
+WHERE id_producto = 3;
+COMMIT;
+
+SAVEPOINT ordenes;
+--ordenes de compra
+--1
+INSERT INTO ORDENES (id_orden, fecha_requerimiento, fecha_envio, nombre_receptor, direccion, codigo_postal, region, ciudad, pais, metodo_envio, id_compra, id_empleado, id_cliente, id_despachador)
+VALUES(1, TO_DATE('2020-10-14', 'YYYY-MM-DD') , TO_DATE('2020-11-24', 'YYYY-MM-DD'), 'mario bros', 'calle champinon', 12345, 'metropolitana', 'santiago', 'chile', 'carreta', 1, 1, 1, 1);
+COMMIT;
+--2
+INSERT INTO ORDENES (id_orden, fecha_requerimiento, fecha_envio, nombre_receptor, direccion, codigo_postal, region, ciudad, pais, metodo_envio, id_compra, id_empleado, id_cliente, id_despachador)
+VALUES(2, TO_DATE('2020-08-17', 'YYYY-MM-DD') , TO_DATE('2020-11-20', 'YYYY-MM-DD'), 'Samus Aran', 'las palmeras', 1282, 'metropolitana', 'santiago', 'chile', 'camion', 2, 2, 2, 2);
+COMMIT;
+--3
+INSERT INTO ORDENES (id_orden, fecha_requerimiento, fecha_envio, nombre_receptor, direccion, codigo_postal, region, ciudad, pais, metodo_envio, id_compra, id_empleado, id_cliente, id_despachador)
+VALUES(2, TO_DATE('2020-12-20', 'YYYY-MM-DD') , TO_DATE('2021-01-20', 'YYYY-MM-DD'), 'Peter Griffin', 'las naranjas', 0654, 'La araucania', 'temuco', 'chile', 'avion', 3, 3, 3, 3);
+COMMIT;
+--4
+INSERT INTO ORDENES (id_orden, fecha_requerimiento, fecha_envio, nombre_receptor, direccion, codigo_postal, region, ciudad, pais, metodo_envio, id_compra, id_empleado, id_cliente, id_despachador)
+VALUES(2, TO_DATE('2020-12-21', 'YYYY-MM-DD') , TO_DATE('2021-01-21', 'YYYY-MM-DD'), 'Harry Potter', 'pasaje 9 3/4', 66548, 'hogwarts', 'mundomagico', 'chile', 'lechuza', 4, 4, 4, 4);
+COMMIT;
+--5
+INSERT INTO ORDENES (id_orden, fecha_requerimiento, fecha_envio, nombre_receptor, direccion, codigo_postal, region, ciudad, pais, metodo_envio, id_compra, id_empleado, id_cliente, id_despachador)
+VALUES(2, TO_DATE('2021-01-14', 'YYYY-MM-DD') , TO_DATE('2021-01-20', 'YYYY-MM-DD'), 'luis jara', 'las acacias', 0657, 'metropolitana', 'santiago', 'chile', 'camion', 5, 5, 5, 5);
+COMMIT;
+
+
+
+--mostramos por pantalla
+SELECT * FROM empleados ;
+SELECT * FROM clientes;
+SELECT * FROM despachadores ;
+SELECT * FROM categoria  ;
+SELECT * FROM proveedores  ;
+SELECT * FROM productos ;
+SELECT * FROM compras ;
+SELECT * FROM orden_de_compra;
+SELECT * FROM ordenes ;
 
