@@ -1,46 +1,3 @@
-/*
-Autor: Camilo Lavado
-Fecha 05-02-2022*/
------ Inicio de comentarios -----------------------
-
-Requerimientos
------1. Identificar cada una de las entidades relacionadas y en base a estas, crear el modelo
-entidad relación correspondiente con todo lo que ello conlleva: cardinalidades, tipos
-de datos de las variables, asignación de claves, entre otros. ( 2 Puntos ).-----
-
-*.- Revisar archivo requerimiento1.png y el archivo de starUML requerimiento1.mdj
-
-SQL*Plus: Release 19.0.0.0.0 - Production on MiÚ Feb 9 23:15:22 2022
-Version 19.3.0.0.0
-
-Copyright (c) 1982, 2019, Oracle.  All rights reserved.
-
-
-Introduzca el nombre de usuario: system
-Introduzca la contrase±a:
-Hora de ┌ltima Conexi¾n Correcta: MiÚ Feb 02 2022 19:09:40 -03:00
-
-Conectado a:
-Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
-Version 19.3.0.0.0
-
-SQL> alter session set "_ORACLE_SCRIPT"=true;
-
-Sesi¾n modificada.
------------------Crearemos el usuario "vendetodo" y le damos privilegios, para los requerimientos de la prueba-------------
-
-SQL> create user vendetodo identified by 1234;
-
-Usuario creado.
-
-SQL> grant all privileges to vendetodo;
-
-Concesi¾n terminada correctamente.
-
-SQL>*AQUÍ CREAMOS LA CONEXIÓN A TRAVES DE SQL DEVELOPER, LLAMADA "vendetodoSPA"  CREANDO UNA NUEVA BASE DE DATOS, DONDE AÑADIREMOS LAS TABLAS.*
-
--------------------Se añaden las tablas mediante DDL
---Creamos la tabla empleados
 CREATE TABLE empleados (
     id_empleado numeric(10) NOT NULL,
     nombre varchar(15) NOT NULL,
@@ -55,7 +12,7 @@ CREATE TABLE empleados (
     PRIMARY KEY (id_empleado)
 );
 
---Creamos la tabla clientes
+
 CREATE TABLE clientes (
     id_cliente numeric(10) NOT NULL,
     nombre_empresa varchar(50) NOT NULL,
@@ -70,7 +27,7 @@ CREATE TABLE clientes (
     PRIMARY KEY (id_cliente)
 );
 
---Creamos la tabla despachadores
+
 CREATE TABLE despachadores (
     id_despachador numeric NOT NULL,
     nombre varchar(40) NOT NULL,
@@ -78,14 +35,14 @@ CREATE TABLE despachadores (
     PRIMARY KEY (id_despachador)
 );
 
---Creamos la tabla categoria
+
 CREATE TABLE categoria (
     id_categoria numeric NOT NULL,
     nombre_categoria varchar(50) NOT NULL,
     PRIMARY KEY (id_categoria)
 );
 
---Creamos la tabla proveedores
+
 CREATE TABLE proveedores (
     id_proveedor numeric(30) NOT NULL,
     nombre_compania varchar(50) NOT NULL,
@@ -97,7 +54,7 @@ CREATE TABLE proveedores (
     PRIMARY KEY (id_proveedor)
 );
 
---Creamos la tabla productos
+
 CREATE TABLE productos (
     id_producto numeric(30) NOT NULL,
     precio integer NOT NULL,
@@ -107,7 +64,7 @@ CREATE TABLE productos (
     id_proveedor numeric(30) NOT NULL,
     PRIMARY KEY (id_producto)
 );
---Creamos la tabla compras
+
 CREATE TABLE compras (
     id_compra numeric(30) NOT NULL,
     valor_compra integer NOT NULL,
@@ -116,14 +73,15 @@ CREATE TABLE compras (
     PRIMARY KEY (id_compra)
 );
 
---Creamos la tabla orden de compras
+
 CREATE TABLE orden_de_compra (
     cantidad numeric(30) NOT NULL,
     id_producto numeric(30) NOT NULL,
     id_orden numeric(30) NOT NULL
 );
 
---Creamos la tabla ordenes
+
+
 CREATE TABLE ordenes (
     id_orden numeric(30) NOT NULL,
     fecha_requerimiento date NOT NULL,
@@ -141,31 +99,10 @@ CREATE TABLE ordenes (
     id_despachador numeric(30) NOT NULL,
     PRIMARY KEY (id_orden)
 );
---alteramos las tablas para añadir las llaves foraneas de forma mas ordenada.
+
 ALTER TABLE productos ADD CONSTRAINT FK_productos__id_categoria FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria);
 ALTER TABLE productos ADD CONSTRAINT FK_productos__id_proveedor FOREIGN KEY (id_proveedor) REFERENCES proveedores(id_proveedor);
 ALTER TABLE orden_de_compra ADD CONSTRAINT FK_orden_de_compra__id_producto FOREIGN KEY (id_producto) REFERENCES productos(id_producto);
 ALTER TABLE ordenes ADD CONSTRAINT FK_ordenes__id_compra FOREIGN KEY (id_compra) REFERENCES compras(id_compra);
 ALTER TABLE ordenes ADD CONSTRAINT FK_ordenes__id_empleado FOREIGN KEY (id_empleado) REFERENCES empleados(id_empleado);
 ALTER TABLE ordenes ADD CONSTRAINT FK_ordenes__id_despachador FOREIGN KEY (id_despachador) REFERENCES despachadores(id_despachador);
-
------------------Arroja por consola lo siguiente--------------------
-
-Table EMPLEADOS creado.
-Table CLIENTES creado.
-Table DESPACHADORES creado.
-Table CATEGORIA creado.
-Table PROVEEDORES creado.
-Table PRODUCTOS creado.
-Table COMPRAS creado.
-Table ORDEN_DE_COMPRA creado.
-Table ORDENES creado.
-
-Table PRODUCTOS alterado.
-Table PRODUCTOS alterado.
-Table ORDEN_DE_COMPRA alterado.
-Table ORDENES alterado.
-Table ORDENES alterado.
-Table ORDENES alterado.
-
-
