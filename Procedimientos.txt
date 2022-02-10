@@ -182,23 +182,23 @@ savepoint clientes;
 --Clientes
 --1
 INSERT INTO CLIENTES (id_cliente, nombre_empresa, nombre_contacto, email, direccion, region, ciudad, pais, codigo_postal, telefono)
-VALUES(1, 'Dwayne', 'Jhonson', 'therock@wwe.com', 'hollywood boulevard 14589', 'no aplica', 'California', 'Estados Unidos', 8964561, 7987897445613);
+VALUES(1, 'Distribuidora viste como roca', 'Dwayne Jhonson', 'therock@wwe.com', 'hollywood boulevard 14589', 'no aplica', 'California', 'Estados Unidos', 8964561, 7987897445613);
 COMMIT;
 --2
 INSERT INTO CLIENTES (id_cliente, nombre_empresa, nombre_contacto, email, direccion, region, ciudad, pais, codigo_postal, telefono)
-VALUES(2, 'Aaron', 'Smith', 'asmith@irb.com', 'evergreen avenue 063', 'no aplica', 'Sidney', 'Australia', 7777894, 14523675445);
+VALUES(2, 'calzado de rugby don Aaron', 'Aaron Smith', 'asmith@irb.com', 'evergreen avenue 063', 'no aplica', 'Sidney', 'Australia', 7777894, 14523675445);
 COMMIT;
 --3
 INSERT INTO CLIENTES (id_cliente, nombre_empresa, nombre_contacto, email, direccion, region, ciudad, pais, codigo_postal, telefono)
-VALUES(3, 'Geralt', 'Rivia', 'whitewolf@kahermorhen.com', 'novigrado bajo 1014', 'region de la araucania', 'pucon', 'chile', 99978746, 997845623);
+VALUES(3, 'alimentos congelados lobo blanco', 'Geralt Rivia', 'whitewolf@kahermorhen.com', 'novigrado bajo 1014', 'region de la araucania', 'pucon', 'chile', 99978746, 997845623);
 COMMIT;
 --4
 INSERT INTO CLIENTES (id_cliente, nombre_empresa, nombre_contacto, email, direccion, region, ciudad, pais, codigo_postal, telefono)
-VALUES(4, 'miguel', 'cervantes', 'elquijote@santillana.com', 'el molino 5013', 'region de la araucania', 'villarrica', 'chile', 9997863, 632165498);
+VALUES(4, 'dulcinea technologies', 'miguel cervantes', 'elquijote@santillana.com', 'el molino 5013', 'region de la araucania', 'villarrica', 'chile', 9997863, 632165498);
 COMMIT;
 --5
 INSERT INTO CLIENTES (id_cliente, nombre_empresa, nombre_contacto, email, direccion, region, ciudad, pais, codigo_postal, telefono)
-VALUES(5, 'Jordan', 'Peterson', 'JBP@Petersoncompany.com', 'calle proposito 4567', 'region de la araucania', 'temuco', 'chile', 999441, 789456123);
+VALUES(5, 'jewels by meaning', 'Jordan Peterson', 'JBP@Petersoncompany.com', 'calle proposito 4567', 'region de la araucania', 'temuco', 'chile', 999441, 789456123);
 COMMIT;
 
 savepoint despachadores;
@@ -387,3 +387,51 @@ SELECT * FROM compras ;
 SELECT * FROM orden_de_compra;
 SELECT * FROM ordenes ;
 
+--Se añadira la respuesta por pantalla en una carpeta aparte llamada "resultados de consultas"
+
+
+-----4. Formular y ejecutar las consultas que correspondan, para obtener la siguiente
+información:-----
+
+-----a. Determinar cuál o cuáles son los clientes con las compras más altas y a qué
+ciudad corresponden los mismos. Esto permitirá en un futuro que VendeTodo
+SPA pueda buscar convenios con algunas empresas despachadoras. (2
+Puntos )-----
+*.-
+--Realizamos un select que nos muestre el nombre de la empresa y la ciudad a la cual pertecen los clientes con compras mas altas
+ y realizaremos un inner join en la tabla ordenes, seguido de un order para ordenar a los clientes segun el valor de las cosas que hayan comprado de forma descendente.
+
+savepoint consulta1
+SELECT cl.nombre_empresa, cl.ciudad 
+FROM CLIENTES cl
+    INNER JOIN ORDENES ord
+        ON cl.id_cliente = ord.id_cliente
+WHERE (id_compra) IN
+        (
+        SELECT id_compra
+        FROM (
+             SELECT id_compra, Rank() 
+             OVER(ORDER BY valor_compra DESC) AS rango
+            FROM COMPRAS
+             ) 
+        WHERE rango < 4
+        );
+-----------------Arroja por consola lo siguiente--------------------
+Savepoint creado.
+
+
+ID_CLIENTE NOMBRE_EMPRESA                                     CIUDAD                        
+---------- -------------------------------------------------- ------------------------------
+         1 Distribuidora viste como roca                      California                    
+         2 calzado de rugby don Aaron                         Sidney                        
+         4 dulcinea technologies                              villarrica                    
+
+Confirmación terminada.
+
+
+
+-----b. Se necesita saber los nombre de los distribuidores de los productos más
+vendidos, esto permitirá evaluar comprar por volumen. Solo es necesario que
+se listen los nombres de todos los registros que cumplan con la solicitud
+( 2 Puntos )-----
+*.-
