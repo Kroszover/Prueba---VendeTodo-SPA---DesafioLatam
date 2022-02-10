@@ -178,29 +178,6 @@ Table ORDENES alterado.
 -----3. Realizar 5 inserciones a cada tabla, esto con el fin de ejecutar consultas sobre el
 modelo. ( 2 Puntos )-----
 *.-
-savepoint empleados;
---EMPLEADOS
---1
-INSERT INTO EMPLEADOS (id_empleado, nombre, apellido, fecha_nacimiento, direccion, region, ciudad, pais, telefono, cargo)
-VALUES(1, 'Ignacio', 'Cifuentes', TO_DATE('1995-12-11', 'YYYY-MM-DD'), 'los aromos 1335 la florida','metropolitana','santiago', 'chile', 981693964, 'vendedor');
-COMMIT;
---2
-INSERT INTO EMPLEADOS (id_empleado, nombre, apellido, fecha_nacimiento, direccion, region, ciudad, pais, telefono, cargo)
-VALUES(2, 'Carlos', 'Trejo', TO_DATE('1990-01-07', 'YYYY-MM-DD'), 'los presidentes 1064 las rejas','metropolitana','santiago', 'chile', 987954236, 'supervisor');
-COMMIT;
---3
-INSERT INTO EMPLEADOS (id_empleado, nombre, apellido, fecha_nacimiento, direccion, region, ciudad, pais, telefono, cargo)
-VALUES(3, 'Andrea', 'Perez', TO_DATE('1995-09-07', 'YYYY-MM-DD'), 'manuel rodriguez 1231 Renca','metropolitana','santiago', 'chile', 977944222, 'gerente de operaciones');
-COMMIT;
---4
-INSERT INTO EMPLEADOS (id_empleado, nombre, apellido, fecha_nacimiento, direccion, region, ciudad, pais, telefono, cargo)
-VALUES(4, 'Mario', 'Ledesma', TO_DATE('1963-06-01', 'YYYY-MM-DD'), 'avenida argentina 1436 maipu','metropolitana','santiago', 'chile', 916798536, 'jefe de operaciones');
-COMMIT;
---5
-INSERT INTO EMPLEADOS (id_empleado, nombre, apellido, fecha_nacimiento, direccion, region, ciudad, pais, telefono, cargo)
-VALUES(5, 'Luigi', 'Bros', TO_DATE('1973-06-01', 'YYYY-MM-DD'), 'plaza italia 0021 providencia','metropolitana','santiago', 'chile', 916456789, 'tecnico de mantenimiento');
-COMMIT;
-
 savepoint clientes;
 --Clientes
 --1
@@ -250,23 +227,23 @@ COMMIT;
 savepoint categoria;
 --categoria
 --1
-INSERT INTO CATEGORIAS (id_categoria, nombre)
+INSERT INTO CATEGORIA (id_categoria, nombre_categoria)
 VALUES(1, 'vestuario');
 COMMIT;
 --2
-INSERT INTO CATEGORIAS (id_categoria, nombre)
+INSERT INTO CATEGORIA (id_categoria, nombre_categoria)
 VALUES(2, 'calzado');
 COMMIT;
 --3
-INSERT INTO CATEGORIAS (id_categoria, nombre)
+INSERT INTO CATEGORIA (id_categoria, nombre_categoria)
 VALUES(3, 'alimentos');
 COMMIT;
 --4
-INSERT INTO CATEGORIAS (id_categoria, nombre)
+INSERT INTO CATEGORIA (id_categoria, nombre_categoria)
 VALUES(4, 'tecnologia');
 COMMIT;
 --5
-INSERT INTO CATEGORIAS (id_categoria, nombre)
+INSERT INTO CATEGORIA (id_categoria, nombre_categoria)
 VALUES(5, 'joyas');
 COMMIT;
 
@@ -319,23 +296,24 @@ COMMIT;
 savepoint compras;
 --compras
 --1
-INSERT INTO compras (id_compra, valor_compra  cantidad_productos, descuentos)
+INSERT INTO compras (id_compra, valor_compra,  cantidad_productos, descuentos)
 VALUES(1, 1200000, 2,0);
 COMMIT;
+
 --2
-INSERT INTO compras (id_compra, valor_compra  cantidad_productos, descuentos)
+INSERT INTO compras (id_compra, valor_compra,  cantidad_productos, descuentos)
 VALUES(2, 450000, 1,0);
 COMMIT;
 --3
-INSERT INTO compras (id_compra, valor_compra  cantidad_productos, descuentos)
+INSERT INTO compras (id_compra, valor_compra,  cantidad_productos, descuentos)
 VALUES(3, 2000, 1,0);
 COMMIT;
 --4
-INSERT INTO compras (id_compra, valor_compra  cantidad_productos, descuentos)
+INSERT INTO compras (id_compra, valor_compra,  cantidad_productos, descuentos)
 VALUES(4, 432000, 12,0);
 COMMIT;
 --5
-INSERT INTO compras (id_compra, valor_compra  cantidad_productos, descuentos)
+INSERT INTO compras (id_compra, valor_compra,  cantidad_productos, descuentos)
 VALUES(5, 10000, 5,0);
 COMMIT;
 
@@ -385,15 +363,15 @@ VALUES(2, TO_DATE('2020-08-17', 'YYYY-MM-DD') , TO_DATE('2020-11-20', 'YYYY-MM-D
 COMMIT;
 --3
 INSERT INTO ORDENES (id_orden, fecha_requerimiento, fecha_envio, nombre_receptor, direccion, codigo_postal, region, ciudad, pais, metodo_envio, id_compra, id_empleado, id_cliente, id_despachador)
-VALUES(2, TO_DATE('2020-12-20', 'YYYY-MM-DD') , TO_DATE('2021-01-20', 'YYYY-MM-DD'), 'Peter Griffin', 'las naranjas', 0654, 'La araucania', 'temuco', 'chile', 'avion', 3, 3, 3, 3);
+VALUES(3, TO_DATE('2020-12-20', 'YYYY-MM-DD') , TO_DATE('2021-01-20', 'YYYY-MM-DD'), 'Peter Griffin', 'las naranjas', 0654, 'La araucania', 'temuco', 'chile', 'avion', 3, 3, 3, 3);
 COMMIT;
 --4
 INSERT INTO ORDENES (id_orden, fecha_requerimiento, fecha_envio, nombre_receptor, direccion, codigo_postal, region, ciudad, pais, metodo_envio, id_compra, id_empleado, id_cliente, id_despachador)
-VALUES(2, TO_DATE('2020-12-21', 'YYYY-MM-DD') , TO_DATE('2021-01-21', 'YYYY-MM-DD'), 'Harry Potter', 'pasaje 9 3/4', 66548, 'hogwarts', 'mundomagico', 'chile', 'lechuza', 4, 4, 4, 4);
+VALUES(4, TO_DATE('2020-12-21', 'YYYY-MM-DD') , TO_DATE('2021-01-21', 'YYYY-MM-DD'), 'Harry Potter', 'pasaje 9 3/4', 66548, 'hogwarts', 'mundomagico', 'chile', 'lechuza', 4, 4, 4, 4);
 COMMIT;
 --5
 INSERT INTO ORDENES (id_orden, fecha_requerimiento, fecha_envio, nombre_receptor, direccion, codigo_postal, region, ciudad, pais, metodo_envio, id_compra, id_empleado, id_cliente, id_despachador)
-VALUES(2, TO_DATE('2021-01-14', 'YYYY-MM-DD') , TO_DATE('2021-01-20', 'YYYY-MM-DD'), 'luis jara', 'las acacias', 0657, 'metropolitana', 'santiago', 'chile', 'camion', 5, 5, 5, 5);
+VALUES(5, TO_DATE('2021-01-14', 'YYYY-MM-DD') , TO_DATE('2021-01-20', 'YYYY-MM-DD'), 'luis jara', 'las acacias', 0657, 'metropolitana', 'santiago', 'chile', 'camion', 5, 5, 5, 5);
 COMMIT;
 
 
