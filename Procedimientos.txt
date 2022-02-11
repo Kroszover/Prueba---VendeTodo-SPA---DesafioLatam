@@ -398,26 +398,18 @@ ciudad corresponden los mismos. Esto permitirá en un futuro que VendeTodo
 SPA pueda buscar convenios con algunas empresas despachadoras. (2
 Puntos )-----
 *.-
---Realizamos un select que nos muestre el nombre de la empresa y la ciudad a la cual pertecen los clientes con compras mas altas
- y realizaremos un inner join en la tabla ordenes, seguido de un order para ordenar a los clientes segun el valor de las cosas que hayan comprado de forma descendente.
 
-savepoint consulta1
-SELECT cl.nombre_empresa, cl.ciudad 
+SELECT  cms.id_compra, cl.nombre_empresa, cl.ciudad, cms.valor_compra  
 FROM CLIENTES cl
     INNER JOIN ORDENES ord
         ON cl.id_cliente = ord.id_cliente
-WHERE (id_compra) IN
-        (
-        SELECT id_compra
-        FROM (
-             SELECT id_compra, Rank() 
-             OVER(ORDER BY valor_compra DESC) AS rango
-            FROM COMPRAS
-             ) 
-        WHERE rango < 4
-        );
+    INNER JOIN compras cms
+        ON cms.id_compra = ord.id_compra
+        ORDER BY cms.valor_compra DESC
+        FETCH FIRST 3 ROWS ONLY
+
+
 -----------------Arroja por consola lo siguiente--------------------
-Savepoint creado.
 
 
 ID_CLIENTE NOMBRE_EMPRESA                                     CIUDAD                        
@@ -426,7 +418,7 @@ ID_CLIENTE NOMBRE_EMPRESA                                     CIUDAD
          2 calzado de rugby don Aaron                         Sidney                        
          4 dulcinea technologies                              villarrica                    
 
-Confirmación terminada.
+
 
 
 
