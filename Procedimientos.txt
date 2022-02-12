@@ -435,3 +435,13 @@ FROM proveedores pro
     on prod.id_producto = ordc.id_producto
     ORDER BY ordc.cantidad DESC
     FETCH FIRST 5 ROWS ONLY ;
+
+
+-----------------Arroja por consola lo siguiente--------------------
+
+id_proveedor	Nombre_compañia		Nombre_contacto		Cantidad
+2		jordan	michael 	jordan			12
+3		La crianza		Mauricio Kloker		5
+5		joyas baron		andronico mujica	1
+4		huawei			Donnie Yen		1
+3		La crianza		Mauricio Kloker		1
