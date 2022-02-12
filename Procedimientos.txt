@@ -406,7 +406,7 @@ FROM CLIENTES cl
     INNER JOIN compras cms
         ON cms.id_compra = ord.id_compra
         ORDER BY cms.valor_compra DESC
-        FETCH FIRST 3 ROWS ONLY
+        FETCH FIRST 3 ROWS ONLY;
 
 
 -----------------Arroja por consola lo siguiente--------------------
@@ -426,4 +426,12 @@ ID_CLIENTE NOMBRE_EMPRESA                                     CIUDAD
 vendidos, esto permitirá evaluar comprar por volumen. Solo es necesario que
 se listen los nombres de todos los registros que cumplan con la solicitud
 ( 2 Puntos )-----
-*.-
+*.- 
+SELECT  pro.id_proveedor, pro.nombre_compania, pro.nombre_contacto, ordc.cantidad
+FROM proveedores pro
+    INNER JOIN PRODUCTOS PROD
+    on pro.id_proveedor = prod.id_proveedor
+    INNER JOIN orden_de_compra ORDC
+    on prod.id_producto = ordc.id_producto
+    ORDER BY ordc.cantidad DESC
+    FETCH FIRST 5 ROWS ONLY ;
